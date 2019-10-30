@@ -1,0 +1,5 @@
+sourceControl {
+    gitRepository("https://github.com/macrofocus/gwt-interop-utils.git") {
+        producesModule("com.github.gwtreact:gwt-interop-utils")
+    }
+}

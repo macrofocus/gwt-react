@@ -39,7 +39,7 @@ sourceSets {
     }
 }
 
-compileJava{
+compileJava {
     //enable incremental compilation
     options.incremental = true
     //options.compilerArgs += ["-verbose"]
@@ -54,10 +54,15 @@ gwt {
     maxHeapSize = "4096M";
 
     dependencies {
-        gwt group: 'com.github.gwtreact', name: 'gwt-interop-utils', version: '1.0.0'
-        gwt group: 'com.google.jsinterop',  name: 'base', version: '1.0.0-RC1'
-        gwt group: 'com.google.elemental2',  name: 'elemental2-core', version: '1.0.0-RC1'
-        gwt group: 'com.google.elemental2',  name: 'elemental2-dom', version: '1.0.0-RC1'
+        gwt('com.github.gwtreact:gwt-interop-utils') {
+            version {
+                branch = 'master'
+            }
+        }
+//        gwt group: 'com.github.gwtreact', name: 'gwt-interop-utils', version: '1.0.0'
+        gwt group: 'com.google.jsinterop',  name: 'base', version: '1.0.0'
+        gwt group: 'com.google.elemental2',  name: 'elemental2-core', version: '1.0.0'
+        gwt group: 'com.google.elemental2',  name: 'elemental2-dom', version: '1.0.0'
     }
 }
 
@@ -95,55 +100,55 @@ jar {
     }
 }
 
-signing {
-    sign configurations.archives
-}
+//signing {
+//    sign configurations.archives
+//}
 
 
-uploadArchives {
-  repositories {
-    mavenDeployer {
-      beforeDeployment {
-        MavenDeployment deployment -> signing.signPom(deployment)
-      }
-
-      repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-        authentication(userName: ossrhUsername, password: ossrhPassword)
-      }
-
-      snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
-        authentication(userName: ossrhUsername, password: ossrhPassword)
-      }
-
-      pom.project {
-        name 'gwt-react'
-        packaging 'jar'
-        description 'Provides Java GWT bindings for React'
-        url 'https://github.com/GWTReact/gwt-react'
-
-        scm {
-          connection 'https://github.com/GWTReact/gwt-react.git'
-          developerConnection 'https://github.com/GWTReact/gwt-react.git'
-          url 'https://github.com/GWTReact/gwt-react.git'
-        }
-
-        licenses {
-          license {
-            name 'MIT License'
-            url 'http://www.opensource.org/licenses/mit-license.php'
-          }
-        }
-
-        developers {
-          developer {
-            id 'pstockley'
-            name 'Paul Stockley'
-            email emailAddress
-            organization 'GWTReact'
-            organizationUrl 'https://github.com/GWTReact'
-          }
-        }
-      }
-    }
-  }
-}
+//uploadArchives {
+//  repositories {
+//    mavenDeployer {
+//      beforeDeployment {
+//        MavenDeployment deployment -> signing.signPom(deployment)
+//      }
+//
+//      repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+//        authentication(userName: ossrhUsername, password: ossrhPassword)
+//      }
+//
+//      snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+//        authentication(userName: ossrhUsername, password: ossrhPassword)
+//      }
+//
+//      pom.project {
+//        name 'gwt-react'
+//        packaging 'jar'
+//        description 'Provides Java GWT bindings for React'
+//        url 'https://github.com/GWTReact/gwt-react'
+//
+//        scm {
+//          connection 'https://github.com/GWTReact/gwt-react.git'
+//          developerConnection 'https://github.com/GWTReact/gwt-react.git'
+//          url 'https://github.com/GWTReact/gwt-react.git'
+//        }
+//
+//        licenses {
+//          license {
+//            name 'MIT License'
+//            url 'http://www.opensource.org/licenses/mit-license.php'
+//          }
+//        }
+//
+//        developers {
+//          developer {
+//            id 'pstockley'
+//            name 'Paul Stockley'
+//            email emailAddress
+//            organization 'GWTReact'
+//            organizationUrl 'https://github.com/GWTReact'
+//          }
+//        }
+//      }
+//    }
+//  }
+//}
